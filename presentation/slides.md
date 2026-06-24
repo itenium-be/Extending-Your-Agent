@@ -16,11 +16,6 @@ first: 2026-07-01
 
 ![](./images/cover-art.jpg)
 
-<!--
-Session 4 in the series. Prior: AI & security · context/compounding/harness · AI-Driven-Development.
-They know the pieces exist. Today: how to author good ones and ship them.
--->
-
 
 ---
 layout: agenda
@@ -42,63 +37,22 @@ layout: full
 <TheAlignmentProblem />
 
 ---
-layout: default
-textSize: lg
+layout: full
 ---
 
-- 1 September 2026 - RAG & Embeddings
-- 1 October 2026 — MCP Servers: Is This How Skynet Started?
-- 25 November 2026 — Predicting Mental Fatigue Using AI
-- December 2026 — The Math Behind the AI Curtain
-- Date? Agent Cage Match & Model Bake-Off
-- Date? Text-to-SQL & Semantic Search
-
-
+<MoreSessions />
 
 ---
-layout: statement
-textSize: lg
+layout: full
 ---
 
-# 🚀 First AI Hackathon — **12 August**
-
-
-::author::
-
-itenium AI Center of Excellence
-
-<!--
-Teaser slide 1. Sell the room on the hands-on track before going theoretical.
--->
-
+<HackatonConcept2 img="playbook-manual.png" />
 
 ---
-layout: default
-h1:
-  type: hash
-  color: primary
-  position: start
+layout: full
 ---
 
-# AI Hackathons
-
-<v-clicks>
-
-- **#1 — 12 Aug**, office day, 90 min, mob-style — **anyone welcome** (non-devs too, subs on itenium)
-- Mob-migrate a real Angular app: **Reactive Forms → Signal Forms** (Angular 22)
-- Driven by **Claude Code + MCP servers**, against a green **Playwright** safety net
-- Scoreboard: tokens burned + tests passing. Topic board: what we mob next
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Today is theory. 12 Aug you build. Oct 1 you build an MCP server for real.
-</div>
-
-<!--
-The ramp: July theory → Aug hands-on → Oct MCP build. Plant it now, pay it off in the wrap.
-Source: bliki/AI-tenium/ai-hackaton
--->
+<HackatonEvent />
 
 
 ---
