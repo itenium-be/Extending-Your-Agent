@@ -23,11 +23,45 @@ They know the pieces exist. Today: how to author good ones and ship them.
 
 
 ---
+layout: agenda
+textSize: md
+items:
+  - The AI Track
+  - Composition, not selection
+  - The description is the interface
+  - Authoring the primitives
+  - Compose & package
+  - Ship with confidence
+  - Operate at scale
+---
+
+---
+layout: full
+---
+
+<TheAlignmentProblem />
+
+---
+layout: default
+textSize: lg
+---
+
+- 1 September 2026 - RAG & Embeddings
+- 1 October 2026 — MCP Servers: Is This How Skynet Started?
+- 25 November 2026 — Predicting Mental Fatigue Using AI
+- December 2026 — The Math Behind the AI Curtain
+- Date? Agent Cage Match & Model Bake-Off
+- Date? Text-to-SQL & Semantic Search
+
+
+
+---
 layout: statement
 textSize: lg
 ---
 
 # 🚀 First AI Hackathon — **12 August**
+
 
 ::author::
 
@@ -79,19 +113,6 @@ Cold open / bridge. AI-Driven-Development already taught what skills/MCP/subagen
 progressive disclosure, the chat→CLAUDE.md→skill→harness ladder, "Hooks > Instructions".
 This talk is the next layer: the craft of authoring + composing + shipping.
 -->
-
-
----
-layout: agenda
-textSize: sm
-items:
-  - Composition, not selection
-  - The description is the interface
-  - Authoring the primitives
-  - Compose & package
-  - Ship with confidence
-  - Operate at scale
----
 
 
 ---
