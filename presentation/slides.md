@@ -22,6 +22,7 @@ layout: agenda
 textSize: md
 items:
   - The AI Track
+  - Configure before you extend
   - Composition, not selection
   - The description is the interface
   - Authoring the primitives
@@ -56,17 +57,225 @@ layout: full
 
 
 ---
-layout: statement
+layout: default
 ---
 
-# Last time: the pieces exist.
-# Today: **author your own** and ship them.
+# This is just for developers, right?
+
+- Drop in all analysis documents and ask questions
+  - Adversarial Review of the analysis or acceptance criteria
+  - Run ad-hoc tests to find missing functionality/bugs
+    - While you're getting coffee
+- Create Excel functions and graphs
+- Create PowerBI report or SQL queries
+- Crunch the numbers for a +1 report
+- Prioritization and backlog trimming
+- Brainstorm UI/UX or wireframes
+- Find a good restaurant for the next team lunch
+
+
+---
+layout: section
+---
+
+# Configure → Extend → Compose → Ship
+
+::subtitle::
+
+Turn knobs · author capability · package it · govern it
+
+
+
+---
+layout: quote
+---
+
+# Configure
+
+
+`~/.claude/settings.json`
+
+`/update-config` and `/config`
 
 <!--
-Cold open / bridge. AI-Driven-Development already taught what skills/MCP/subagents/hooks ARE,
-progressive disclosure, the chat→CLAUDE.md→skill→harness ladder, "Hooks > Instructions".
-This talk is the next layer: the craft of authoring + composing + shipping.
+Don't configure yourself, let Claude do it for you!  
+For many of the configs, you'll have to restart the harness
+
+`/doctor`: diagnose setup problems
 -->
+
+
+---
+layout: default
+textSize: sm
+---
+
+# Context Engineering
+
+<v-clicks depth="2">
+
+- `/statusline`: crucial!
+  - Must see: `context_window.used_percentage`
+  - There is also `subagentStatusLine`
+- `autoCompactEnabled` & `autoCompactWindow`
+  - Do not lean on compaction: land the plane and `/clear`!
+- `/memory`: Injected close to the action
+  - `autoMemoryEnabled`
+  - `autoMemoryDirectory` -> `~/.claude/projects/<dir>/memory`
+    - **Progressive Context Disclosure** with `MEMORY.md` index
+  - `autoDreamEnabled`: auto clean & dedupe
+- `/rewind`: if the model went off-track
+  - `fileCheckpointingEnabled` also restore all changed files
+
+</v-clicks>
+
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
+
+The middle is the dumb zone,
+<br>start thinking about a new session around <b>40%</b> usage
+</div>
+
+<!--
+`/branch`: split the current session to try alternative approaches, then `/resume` to go back to original session  
+`/fork`: put current work in background agent which returns to current session when done  
+`/btw`: ask a quick question in current context without polluting the main thread  
+-->
+
+
+---
+layout: default
+---
+
+# Look & Feel
+
+<v-clicks depth="2">
+
+- The most important one: `spinnerVerbs`
+- `footerLinksRegexes` <small>(requires `FORCE_HYPERLINK` on WSL)</small>
+- `/color` & `/rename`: manage multiple sessions
+  - Combine it with `git worktree`
+- `/tui fullscreen` & `/focus`: zen mode
+- `/keybindings` -> `~/.claude/keybindings.json`
+- `attribution` & `includeGitInstructions`
+- `preferredNotifChannel` --> Use a hook instead!
+- env: `CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1`
+
+</v-clicks>
+
+
+<!--
+`/theme`: light/dark theme  
+worktrees:  
+- [obra/superpowers using-git-worktrees](https://github.com/obra/superpowers/blob/main/skills/using-git-worktrees/SKILL.md)
+- symlinkDirectories: for node_modules, ... sharing (speedup)
+- sparsePaths: in monorepos, only checkout certain directories (speedup)
+- baseRef: start from HEAD or origin/main
+
+keybindings with `"EDITOR": "vim"` on WSL or you'll need to do some path translation magic
+-->
+
+
+---
+layout: default
+---
+
+# Behavior
+
+<v-clicks depth="2">
+
+- `/model`: 1 Opus == +/-5 Sonnet tokens
+- `advisorModel` and `/advisor`: adversarial review by a stronger model to validate a multi step process
+- `/effort`: low (faster) -> xhigh (smarter)
+  - `ultra` burn all the tokens (fan out, pipelines, verify, judge, ...)
+    - Trigger with "ultracode"
+- `alwaysThinkingEnabled`: false == answer straight away.
+  - `Ctrl + O` to see "internal thinking" or `showThinkingSummaries`
+- `/fast` & `fastMode`: pay more for faster replies
+- `outputStyle`: Default / Proactive / Explanatory / Learning
+  - ... Or drop in Caveman ;)
+  - `/powerup` for interactive learning
+
+</v-clicks>
+
+
+<!--
+Ultra: no constraint, multi agent, dynamic workflow. (understand → design → implement → (adversarial) review)  
+Caveman: why use many token when few token do trick  
+ex: I have a "Bash-explained" custom output style
+-->
+
+---
+layout: default
+---
+
+# Security
+
+- `Shift + Tab` to cycle between permission modes
+  - `skipDangerousModePermissionPrompt`: YOLO 🎉
+  - `auto` (configurable) middle ground between ask-all & yolo
+- `/permissions`: Allow / Deny / Ask
+- `additionalDirectories` & `/add-dir`
+- `sandbox`: on the OS level <small>(maxOS, Linux, WSL2)</small>
+  - egress and (credential, ...) file blocks
+- `claude --cloud`: run it on Anthropic's servers
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-12">
+
+`deny: [Read(**/secrets)]` only stops the Read tool,
+<br>it does not stop a Python script from reading that file.
+<br>That is where the sandbox comes in.
+
+</div>
+
+<!--
+sandbox:
+- bubblewrap (bwrap) — the walls (Linux namespaces container-like command wrapper that hides files, processes, network)
+- seccomp — the rules of conduct (shrinks the attack surface by blocking syscalls: ptrace, raw sockets, mount)
+- socat — the monitored mail slot (the allowedDomains pinhole through bwrap)
+-->
+
+
+---
+layout: default
+textSize: sm
+---
+
+# On the go
+## Take it with you
+
+<v-clicks depth="2">
+
+- Connect Github & Slack (`@claude`) for "coding" on the go
+- `/teleport` picks up a mobile session
+- `/remote-control` continue a session on the mobile app
+- `inputNeededNotifEnabled`: mobile push when your input is needed
+- `agentPushNotifEnabled`: mobile push to inform you of something noteworthy
+
+</v-clicks>
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-10">
+
+Set a `/goal`, enable `/rc`, go to the sauna
+<br>and get a `inputNeededNotifEnabled` ping when done.
+
+</div>
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-10">
+
+Continuing on the homelab open-space session: combine this with something
+like Coolify for deploying changes and test them on the go 🏕️
+
+</div>
+
+
+<!--
+claude --cloud: Claude Code on the web (Anthropic's infra, no bash)  
+  Set up a fitting environment for the project `/remote-env`
+claude --bg: run headless in the background  
+claude ssh: drive a session on a remote box  
+-->
+
 
 
 ---
@@ -558,6 +767,7 @@ textSize: sm
 
 - Enterprise average: **~$13 / dev / active day** (~$150–250 / dev / month)
 - **Agent teams** (parallel instances) burn **~7×** the tokens of a standard session
+  - Each runs in its own git **worktree** — `worktree.symlinkDirectories` (share `node_modules`) + `sparsePaths` (skip the monorepo) keep that affordable on disk & setup
 - This is exactly why progressive disclosure + tight descriptions matter
 - A bloated `CLAUDE.md` and 20 always-on MCP tools is a recurring tax on every session
 

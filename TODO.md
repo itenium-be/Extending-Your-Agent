@@ -1,7 +1,35 @@
+┌──────────────────┬──────────────────────────────────────────────────────────────────┐
+│     Category     │                         Keys (examples)                          │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ Permissions /    │ permissions (allow/deny/ask/defaultMode), sandbox                │
+│ security         │ (network/filesystem/credentials), disableBypassPermissionsMode   │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│                  │ run commands on lifecycle events — PreToolUse, PostToolUse,      │
+│ Hooks ⭐         │ Stop, SessionStart, … (types:                                    │
+│                  │ command/prompt/agent/http/mcp_tool)                              │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ MCP              │ enableAllProjectMcpServers, enabled/disabledMcpjsonServers,      │
+│                  │ allowed/deniedMcpServers, disableClaudeAiConnectors              │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ Plugins /        │ enabledPlugins, extraKnownMarketplaces,                          │
+│ marketplaces     │ strict/blockedMarketplaces, pluginConfigs                        │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ Skills           │ skillOverrides, disableBundledSkills, skillListingMaxDescChars   │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ Remote / mobile  │ remoteControlAtStartup, isolatePeerMachines, autoUploadSessions, │
+│                  │  inputNeededNotifEnabled, agentPushNotifEnabled, sshConfigs      │
+├──────────────────┼──────────────────────────────────────────────────────────────────┤
+│ Workflows        │ enableWorkflows, workflowKeywordTriggerEnabled (the ultracode    │
+│                  │ trigger)                                                         │
+└──────────────────┴──────────────────────────────────────────────────────────────────┘
+
+
+
+
 Adversial Review both extensions research
 =========================================
 
-2. The two cite near-disjoint MCP toolsets — DeepResearch: MCPhound, YawLabs/mcp-compliance. Atlas: Bellwether,
+1. The two cite near-disjoint MCP toolsets — DeepResearch: MCPhound, YawLabs/mcp-compliance. Atlas: Bellwether,
   modelcontextprotocol/conformance, FastMCP, pinner-mcp. Non-overlap on the same problem means at least one set is partly hallucinated.
   Independently verify before any goes on a slide: MCPhound, mcp-compliance, Bellwether (⭐1, "days old"), CVE-2025-54136/MCPoison, the
   "Snyk acquired Invariant 2025-06-24" date (suspiciously equals the research date −1yr).
