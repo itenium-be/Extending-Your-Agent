@@ -1,7 +1,7 @@
 ---
 theme: ./theme
-title: MCP, Skills, Extending your agent
-subTitle: Author your own, compose them, ship them to your team
+title: Extending your agent
+subTitle: Configure → Extend → Compose → Ship
 transition: fade
 session-time: 90min
 track: ai
@@ -9,8 +9,8 @@ type: Theoretical
 first: 2026-07-01
 ---
 
-# MCP, Skills, Extending your agent
-## Author your own · compose · ship to your team
+# Extending your agent
+## Configure → Extend → Compose → Ship
 
 ::image::
 
@@ -22,8 +22,8 @@ layout: agenda
 textSize: md
 items:
   - The AI Track
-  - Configure before you extend
-  - Composition, not selection
+  - Configure
+  - Compose
   - The description is the interface
   - Authoring the primitives
   - Compose & package
@@ -57,32 +57,54 @@ layout: full
 
 
 ---
-layout: default
+layout: default-aside
 ---
 
 # This is just for developers, right?
 
-- Drop in all analysis documents and ask questions
-  - Adversarial Review of the analysis or acceptance criteria
-  - Run ad-hoc tests to find missing functionality/bugs
-    - While you're getting coffee
 - Create Excel functions and graphs
 - Create PowerBI report or SQL queries
 - Crunch the numbers for a +1 report
 - Prioritization and backlog trimming
-- Brainstorm UI/UX or wireframes
+- Brainstorm UX / wireframes <small>(Claude Design?)</small>
+- Drop in all analysis documents and ask questions
+  - Adversarial Review of the analysis or acceptance criteria
+  - Run ad-hoc tests to find missing functionality/bugs
+    - While you're getting coffee
 - Find a good restaurant for the next team lunch
 
+::image::
+
+![](./images/not-just-developers.jpg)
+
+---
+layout: statement
+---
+
+
+On Terminal Bench 2.0, one team moved a coding agent from outside
+the top 30 into the top 5 by changing only the harness, with the
+same model underneath.
+
+::image::
+
+![](/team-climbing.webp)
+
+
+<!--
+https://addyosmani.com/blog/new-sdlc-vibe-coding/
+-->
 
 ---
 layout: section
+background: knobs2.jpg
 ---
 
-# Configure → Extend → Compose → Ship
+# Configure
 
 ::subtitle::
 
-Turn knobs · author capability · package it · govern it
+Turn knobs · Make it your own
 
 
 
@@ -90,23 +112,27 @@ Turn knobs · author capability · package it · govern it
 layout: quote
 ---
 
-# Configure
+# Claude Configuration
 
 
 `~/.claude/settings.json`
 
 `/update-config` and `/config`
 
+`/doctor` if it messed up
+
+::image::
+
+![](./images/knobs1.jpg)
+
 <!--
 Don't configure yourself, let Claude do it for you!  
 For many of the configs, you'll have to restart the harness
-
-`/doctor`: diagnose setup problems
 -->
 
 
 ---
-layout: default
+layout: default-aside
 textSize: sm
 ---
 
@@ -136,6 +162,10 @@ The middle is the dumb zone,
 <br>start thinking about a new session around <b>40%</b> usage
 </div>
 
+::image::
+
+![](./images/context-engineering.jpg)
+
 <!--
 `/branch`: split the current session to try alternative approaches, then `/resume` to go back to original session  
 `/fork`: put current work in background agent which returns to current session when done  
@@ -144,7 +174,7 @@ The middle is the dumb zone,
 
 
 ---
-layout: default
+layout: default-aside
 ---
 
 # Look & Feel
@@ -163,6 +193,10 @@ layout: default
 
 </v-clicks>
 
+::image::
+
+![](./images/look-and-feel.jpg)
+
 
 <!--
 `/theme`: light/dark theme  
@@ -177,7 +211,11 @@ keybindings with `"EDITOR": "vim"` on WSL or you'll need to do some path transla
 
 
 ---
-layout: default
+layout: default-aside
+h1:
+  type: hash
+  color: muted
+  position: start
 ---
 
 # Behavior
@@ -185,10 +223,9 @@ layout: default
 <v-clicks depth="2">
 
 - `/model`: 1 Opus == +/-5 Sonnet tokens
-- `advisorModel` and `/advisor`: adversarial review by a stronger model to validate a multi step process
+- `advisorModel` and `/advisor`: adversarial review by a stronger model
 - `/effort`: low (faster) -> xhigh (smarter)
-  - `ultra` burn all the tokens (fan out, pipelines, verify, judge, ...)
-    - Trigger with "ultracode"
+  - `ultra` burn all the tokens (fan out, pipelines, verify, judge, ...) - Trigger with "ultracode"
 - `alwaysThinkingEnabled`: false == answer straight away.
   - `Ctrl + O` to see "internal thinking" or `showThinkingSummaries`
 - `/fast` & `fastMode`: pay more for faster replies
@@ -198,6 +235,10 @@ layout: default
 
 </v-clicks>
 
+::image::
+
+![](./images/behavior.jpg)
+
 
 <!--
 Ultra: no constraint, multi agent, dynamic workflow. (understand → design → implement → (adversarial) review)  
@@ -206,21 +247,22 @@ ex: I have a "Bash-explained" custom output style
 -->
 
 ---
-layout: default
+layout: default-aside
+textSize: sm
 ---
 
 # Security
 
 - `Shift + Tab` to cycle between permission modes
-  - `skipDangerousModePermissionPrompt`: YOLO 🎉
+  - `skipDangerousModePermissionPrompt`: YOLO🎉
   - `auto` (configurable) middle ground between ask-all & yolo
 - `/permissions`: Allow / Deny / Ask
 - `additionalDirectories` & `/add-dir`
-- `sandbox`: on the OS level <small>(maxOS, Linux, WSL2)</small>
+- `sandbox`: on the OS level <small>(macOS, Linux, WSL2)</small>
   - egress and (credential, ...) file blocks
 - `claude --cloud`: run it on Anthropic's servers
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-12">
+<div v-click class="full-width text-2xl italic text-orange-400 mt-20">
 
 `deny: [Read(**/secrets)]` only stops the Read tool,
 <br>it does not stop a Python script from reading that file.
@@ -228,16 +270,22 @@ layout: default
 
 </div>
 
+::image::
+
+![](./images/security.jpg)
+
 <!--
 sandbox:
 - bubblewrap (bwrap) — the walls (Linux namespaces container-like command wrapper that hides files, processes, network)
 - seccomp — the rules of conduct (shrinks the attack surface by blocking syscalls: ptrace, raw sockets, mount)
 - socat — the monitored mail slot (the allowedDomains pinhole through bwrap)
+
+On Windows: there is an npm package.
 -->
 
 
 ---
-layout: default
+layout: default-aside
 textSize: sm
 ---
 
@@ -248,25 +296,29 @@ textSize: sm
 
 - Connect Github & Slack (`@claude`) for "coding" on the go
 - `/teleport` picks up a mobile session
-- `/remote-control` continue a session on the mobile app
+- `/remote-control` continue a session on mobile
 - `inputNeededNotifEnabled`: mobile push when your input is needed
 - `agentPushNotifEnabled`: mobile push to inform you of something noteworthy
 
 </v-clicks>
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-10">
+<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
 
 Set a `/goal`, enable `/rc`, go to the sauna
 <br>and get a `inputNeededNotifEnabled` ping when done.
 
 </div>
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-10">
+<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
 
 Continuing on the homelab open-space session: combine this with something
-like Coolify for deploying changes and test them on the go 🏕️
+like Coolify for deploying changes and testing them on the go 🏕️
 
 </div>
+
+::image::
+
+![](./images/on-the-go.jpg)
 
 
 <!--
@@ -282,38 +334,11 @@ claude ssh: drive a session on a remote box
 layout: section
 ---
 
-# Composition, not selection
+# Composition
 
 ::subtitle::
 
-The four primitives don't compete — they nest
-
-
----
-layout: default
----
-
-# The layer cake
-
-<v-clicks depth="2">
-
-- A **plugin** is the packaging unit — it bundles:
-  - **Skills** — on-demand instructions
-  - **Subagents** — isolated context
-  - **Hooks** — deterministic events
-  - **MCP servers** — stateful connections
-- A skill with `context: fork` *runs inside* a subagent
-- A hook can fire *on a subagent's* tool call
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Teach the nesting first — or the audience hears four overlapping pitches.
-</div>
-
-<!--
-Last session ended on "harness engineering". This is the harness, packaged and shippable.
--->
+The primitives don't compete — they nest
 
 
 ---
@@ -324,35 +349,26 @@ h2:
   position: all
 ---
 
-# One question routes everything
+# The layer cake
+## The harness, packaged and shippable
 
-## context · determinism · defaults
+<v-clicks depth="2">
 
-<v-clicks>
-
-- **Context problem?** → Skill or subagent (isolation, on-demand loading)
-- **Determinism problem?** → Hook (only `PreToolUse` can *block*)
-- **Defaults problem?** → settings, permissions, CLAUDE.md
-- **Reaching outside the box?** (DB, OAuth, live UI) → MCP
+- A **plugin** is a directory which bundles:
+  - **Skills** — model-invoked capabilities
+  - **Slash Commands** — user-invoked workflows
+  - **Agents** — specialized subagents, isolated context
+  - **Hooks** — deterministic events
+  - **MCP servers** — stateful connections
 
 </v-clicks>
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Subagents give isolation. Hooks give determinism. The rest is substrate.
-</div>
-
-<!--
-This is the decision spine for the whole talk. Each primitive section answers one of these.
--->
 
 
 ---
 layout: default
 textSize: sm
-h1:
-  type: hash
-  color: muted
-  position: start
+
 ---
 
 # Footgun · composition
