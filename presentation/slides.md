@@ -434,7 +434,7 @@ What the marketplaces offer...
 
 
 ---
-layout: default
+layout: default-aside
 h2:
   type: brackets
   color: primary
@@ -457,12 +457,16 @@ h2:
 
 </v-clicks>
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-16">
+<div v-click class="full-width text-2xl italic text-orange-400 mt-8">
 
 A plugin is installed with your permissions.<br>
 ~36% of skills in the wild have flaws.
 
 </div>
+
+::image::
+
+![](./images/plugin-bundle.jpg)
 
 <!--
 Hooks can run any code (ex: on SessionStart)  
@@ -494,7 +498,38 @@ layout: code
 }
 ```
 
+<!--
+"skills": "./custom/skills/",
+"commands": ["./custom/commands/special.md"],
+"agents": ["./custom/agents/reviewer.md"],
+"hooks": "./config/hooks.json",
+"mcpServers": "./mcp-config.json",
+"outputStyles": "./styles/",
+"lspServers": "./.lsp.json",
+"experimental": {
+  "themes": "./themes/",
+  "monitors": "./monitors.json"
+},
+"dependencies": [
+  "helper-lib",
+  { "name": "secrets-vault", "version": "~2.1.0" }
+]
+-->
 
+
+
+---
+layout: code
+---
+
+# Plugin Install
+
+```txt
+/plugin marketplace add https://github.com/itenium-be/Extending-Your-Agent
+/plugin install extending-your-agent-tutorial@extending-your-agent
+/reload-plugins
+/greeter important stuff
+```
 
 
 ---
