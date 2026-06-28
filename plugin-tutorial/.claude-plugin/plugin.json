@@ -8,5 +8,8 @@
   "keywords": [
     "claude",
     "tutorial"
+  ],
+  "dependencies": [
+    { "name": "figlet-text-converter", "marketplace": "skillsforge-marketplace" }
   ]
 }

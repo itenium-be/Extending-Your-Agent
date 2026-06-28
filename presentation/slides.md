@@ -536,6 +536,10 @@ layout: code
 
 <!--
 Demo "/greeter what we've been postponing"
+
+# The ASCII dependency
+claude plugin marketplace add rawveg/skillsforge-marketplace
+claude plugin install figlet-text-converter@skillsforge-marketplace
 -->
 
 
@@ -558,7 +562,13 @@ layout: default
 
 <v-clicks depth="2">
 
-- Let's look at the "Greeter"
+- Let's look at the "Greeter" code!
+- Want to create a skill?
+  - Do the action manually, then have Claude write it up as a skill
+  - Refine the skill each time you use it and it doesn't work perfectly
+  - Use `skill-creator@claude-plugins-official`
+  - Or `/superpowers:writing-skills`
+  - Or BMADs, ...
 
 </v-clicks>
 

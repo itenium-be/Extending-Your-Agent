@@ -5,6 +5,7 @@
     "description": "The marketplace with all Extending Your Agent plugins!",
     "version": "1.0.0"
   },
+  "allowCrossMarketplaceDependenciesOn": ["skillsforge-marketplace"],
   "plugins": [
     {
       "name": "extending-your-agent-tutorial",

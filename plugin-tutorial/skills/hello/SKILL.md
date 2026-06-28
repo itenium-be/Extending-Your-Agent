@@ -27,6 +27,11 @@ argument-hint: "[help-working-on]"
 # effort: low, medium, high, xhigh, max
 # shell: bash / powershell (PowerShell? CLAUDE_CODE_USE_POWERSHELL_TOOL=1)
 # paths: only activate this skill when on one of these path(s)
+
+
+# For the fancy ASCII we're using an external dependency, see:
+# marketplace.json: allowCrossMarketplaceDependenciesOn
+# plugin.json: dependencies
 ---
 
 Log your reasoning to logs/${CLAUDE_SESSION_ID}.log and log the full path.
@@ -51,5 +56,6 @@ git --version
 Greet the "Current user" warmly and ask how you can help them with "$ARGUMENTS" today.
 Shortly state their current environment.
 
-Part of this greeting should be a rainbow ASCII art thingie or something.
-Make it awesome.
+Render the banner with the **figlet-text-converter** skill (a plugin dependency — see
+`plugin.json` `dependencies`): use it to turn the user's name into big FIGlet ASCII letters.
+Then make it awesome — wrap the banner in a rainbow and add a unicorn (and friends 🦄🌈✨).
