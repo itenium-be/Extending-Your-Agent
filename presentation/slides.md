@@ -23,6 +23,8 @@ textSize: md
 items:
   - The AI Track
   - Configure
+  - Marketplaces
+  - Plugins
   - Compose
   - The description is the interface
   - Authoring the primitives
@@ -329,16 +331,95 @@ claude ssh: drive a session on a remote box
 -->
 
 
+---
+layout: section
+background: marketplaces.jpg
+---
+
+# Marketplaces
+
+
+---
+layout: code
+---
+
+# Marketplace
+## A catalog of Plugins
+
+A git repository with `.claude-plugin/marketplace.json`
+
+```json
+{
+  "name": "superpowers-marketplace",
+  "owner": { "name": "Jesse Vincent", "email": "jesse@fsck.com" },
+  "metadata": {
+    "description": "Skills, workflows, and productivity tools",
+    "version": "1.0.13"
+  },
+  "plugins": [{
+    "name": "superpowers",
+    "source": { "source": "url", "url": "https://github.com/obra/superpowers" },
+    "description": "Core skills library: TDD, debugging, collaboration patterns, and proven techniques",
+    "version": "6.0.3"
+  }]
+}
+```
+
+<!--
+- `source.source`: can also be "github", or source can be a relative path
+- plugins can also contain: author, category, keywords, homepage
+-->
+
+
+---
+layout: default-aside
+---
+
+# Marketplaces
+
+<v-clicks depth="2">
+
+- `/plugin marketplace add affaan-m/ECC`
+  - In `settings.json` as `extraKnownMarketplaces`
+- `add` vs `remove`, `update`, `list`
+- Some marketplaces
+  - `claude-plugins-official`: 150+ vetted plugins
+    - superpowers ships with the official marketplace!
+  - `claude-plugins-community`: huge list, lots of noise
+  - `wshobson/agents`: multi-harness agent collection
+  - `VoltAgent/awesome-claude-code-subagents`: 100+ specialized
+  - `davepoon/buildwithclaude`: ~70 plugins, curated
+
+</v-clicks>
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
+
+See the `README.md` for sites where you can explore/discover more.<br>
+And `research/Analysts` specifically for FA/BA/PO roles.
+
+</div>
+
+::image::
+
+![](./images/market-setup.jpg)
+
+
+<!--
+Also in settings.json: blockedMarketplaces  
+strictKnownMarketplaces: only allow these
+-->
+
 
 ---
 layout: section
+background: plugins.jpg
 ---
 
-# Composition
+# Plugins
 
 ::subtitle::
 
-The primitives don't compete — they nest
+What the marketplaces offer...
 
 
 ---
@@ -349,26 +430,37 @@ h2:
   position: all
 ---
 
-# The layer cake
+# Plugins
 ## The harness, packaged and shippable
 
 <v-clicks depth="2">
 
 - A **plugin** is a directory which bundles:
   - **Skills** — model-invoked capabilities
-  - **Slash Commands** — user-invoked workflows
+    - **Slash Commands** — user-invoked workflows (folded into skills)
   - **Agents** — specialized subagents, isolated context
   - **Hooks** — deterministic events
   - **MCP servers** — stateful connections
+  - **LSP servers** — AI intellisense
 
 </v-clicks>
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-16">
+
+A plugin is installed with your permissions.<br>
+~36% of skills in the wild have flaws.
+
+</div>
+
+<!--
+Hooks can run any code (ex: on SessionStart)
+-->
 
 
 
 ---
 layout: default
 textSize: sm
-
 ---
 
 # Footgun · composition

@@ -1,9 +1,6 @@
 ┌──────────────────┬──────────────────────────────────────────────────────────────────┐
 │     Category     │                         Keys (examples)                          │
 ├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Permissions /    │ permissions (allow/deny/ask/defaultMode), sandbox                │
-│ security         │ (network/filesystem/credentials), disableBypassPermissionsMode   │
-├──────────────────┼──────────────────────────────────────────────────────────────────┤
 │                  │ run commands on lifecycle events — PreToolUse, PostToolUse,      │
 │ Hooks ⭐         │ Stop, SessionStart, … (types:                                    │
 │                  │ command/prompt/agent/http/mcp_tool)                              │
@@ -11,17 +8,21 @@
 │ MCP              │ enableAllProjectMcpServers, enabled/disabledMcpjsonServers,      │
 │                  │ allowed/deniedMcpServers, disableClaudeAiConnectors              │
 ├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Plugins /        │ enabledPlugins, extraKnownMarketplaces,                          │
-│ marketplaces     │ strict/blockedMarketplaces, pluginConfigs                        │
+│ Plugins /        │ enabledPlugins, ,                          │
+│ marketplaces     │ pluginConfigs                        │
 ├──────────────────┼──────────────────────────────────────────────────────────────────┤
 │ Skills           │ skillOverrides, disableBundledSkills, skillListingMaxDescChars   │
-├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Remote / mobile  │ remoteControlAtStartup, isolatePeerMachines, autoUploadSessions, │
-│                  │  inputNeededNotifEnabled, agentPushNotifEnabled, sshConfigs      │
-├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Workflows        │ enableWorkflows, workflowKeywordTriggerEnabled (the ultracode    │
-│                  │ trigger)                                                         │
 └──────────────────┴──────────────────────────────────────────────────────────────────┘
+
+
+
+
+https://github.com/affaan-m/ECC
+
+
+- [10x-Team](https://github.com/Jaan-Mustafa/10x-Team): 12 specialized roles (CTO, Product Manager, Security Engineer, ...)
+- [16minds](https://github.com/yukurash/16minds-plugin)
+- [ADR Creator](https://github.com/barnburner121/claude-plugin-marketplace)
 
 
 
