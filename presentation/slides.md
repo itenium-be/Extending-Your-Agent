@@ -233,7 +233,7 @@ h1:
 - `/fast` & `fastMode`: pay more for faster replies
 - `outputStyle`: Default / Proactive / Explanatory / Learning
   - ... Or drop in Caveman ;)
-  - `/powerup` for interactive learning
+  - `/powerup` for interactive learning; or just `/help`
 
 </v-clicks>
 
@@ -255,6 +255,8 @@ textSize: sm
 
 # Security
 
+<v-clicks depth="2">
+
 - `Shift + Tab` to cycle between permission modes
   - `skipDangerousModePermissionPrompt`: YOLO🎉
   - `auto` (configurable) middle ground between ask-all & yolo
@@ -263,6 +265,8 @@ textSize: sm
 - `sandbox`: on the OS level <small>(macOS, Linux, WSL2)</small>
   - egress and (credential, ...) file blocks
 - `claude --cloud`: run it on Anthropic's servers
+
+</v-clicks>
 
 <div v-click class="full-width text-2xl italic text-orange-400 mt-20">
 
@@ -348,6 +352,8 @@ layout: code
 
 A git repository with `.claude-plugin/marketplace.json`
 
+<v-click>
+
 ```json
 {
   "name": "superpowers-marketplace",
@@ -365,9 +371,14 @@ A git repository with `.claude-plugin/marketplace.json`
 }
 ```
 
+</v-click>
+
 <!--
-- `source.source`: can also be "github", or source can be a relative path
-- plugins can also contain: author, category, keywords, homepage
+- `source.source`: can also be "github", "npm", "git-subdir" (sparse for monorepos), or source can be a relative path
+  - ref: which branch, sha: the git sha
+- plugins can also contain: author, category, keywords, homepage, ...
+- strict: who is the authority for the metadata (false: marketplace vs true (default):plugin itself)
+- dependencies: depend on a plugin from another marketplace
 -->
 
 
@@ -442,6 +453,7 @@ h2:
   - **Hooks** — deterministic events
   - **MCP servers** — stateful connections
   - **LSP servers** — AI intellisense
+  - **Monitors** — background jobs
 
 </v-clicks>
 
@@ -453,32 +465,36 @@ A plugin is installed with your permissions.<br>
 </div>
 
 <!--
-Hooks can run any code (ex: on SessionStart)
+Hooks can run any code (ex: on SessionStart)  
+Before installing one, have a quick glance at the hooks (and maybe the skills).
 -->
 
-
-
 ---
-layout: default
-textSize: sm
+layout: code
 ---
 
-# Footgun · composition
+# Plugin
+## The Plugin Manifest
 
-<v-clicks>
+`.claude-plugin/plugin.json`
 
-- Installing a plugin = **trusting everything it bundles** — at once
-- `CVE-2025-59536`: hook config executes **before** the trust dialog
-- "TrustFall": cloning a hostile repo runs code on open
-- One `/plugin install` pulls skills + hooks + MCP + subagents you never read
+```json
+{
+  "name": "superpowers",
+  "description": "Core skills library for Claude Code: TDD, debugging, collaboration patterns, and proven techniques",
+  "version": "6.0.3",
+  "author": { "name": "Jesse Vincent", "email": "jesse@fsck.com" },
+  "homepage": "https://github.com/obra/superpowers",
+  "repository": "https://github.com/obra/superpowers",
+  "license": "MIT",
+  "keywords": [
+    "skills", "tdd", "debugging",
+    "collaboration", "best-practices", "workflows"
+  ]
+}
+```
 
-</v-clicks>
 
-<div v-click class="full-width text-xl italic text-orange-400 mt-6">
-Convenience and blast radius are the same mechanism.
-</div>
-
-<!-- Footgun #1. We tie all footguns together as the lethal trifecta in the wrap. -->
 
 
 ---
@@ -946,6 +962,26 @@ textSize: lg
 See you at the hackathon
 
 <!-- Pay off the ramp from the teaser. Drive signups. -->
+
+
+
+---
+layout: default
+---
+
+# Call to action
+
+<v-clicks>
+
+- `#boekenclub`: join us for "The Alignment Problem"
+- Join Claude hack-a-tons during office days, first one on **12 august**!
+- Turn your `~/.claude` into a git repository
+- Turn knobs and see what happens in `settings.json`
+  - `/statusline`, `/update-config`
+- Install `obra/superpowers` or `affaan-m/ECC`
+
+
+</v-clicks>
 
 
 ---

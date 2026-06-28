@@ -33,6 +33,9 @@ const modes = [
       <div class="board">
         <span class="bl">// topic board</span>
         <b>you bring the topics</b> — the room votes what we tackle next. Everyone welcome.
+        <br>&nbsp;&nbsp;&nbsp;<span v-click><b>share what you discovered</b> — post wins, prompts, tools, agents, ...</span>
+        <br>&nbsp;&nbsp;&nbsp;<span v-click><b>show and tell</b> — what did Claude do for you this week?</span>
+        <br>&nbsp;&nbsp;&nbsp;<span v-click><b>share a skill</b> — one you wrote, or one you found...</span>
       </div>
 
       <div class="foot">

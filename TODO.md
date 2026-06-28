@@ -26,6 +26,15 @@ https://github.com/affaan-m/ECC
 
 
 
+Hooks:
+SessionStart:
+https://github.com/obra/superpowers/blob/main/skills/using-superpowers/SKILL.md
+
+
+
+https://edotor.net/?engine=dot#deflate:eNqVU8FKw0AQvfsVQ0CqoAevlipFED14EXoqQTa702bpZmbZ3dQG8d9NmlaDZtO45/fezM57T+m1EzYHv9HGvK0Mv8PHGdQvWXh0UKD3Yo3gUKLeokpg6XNhcaa4zAxK7aTBdNoy5hmXAQIDUqi51giCghXeD7OMQ6EqyJzQ5AO7AlWHoUXBpI7gZ9ryBjtYTet2929Gxrsj+kWv8wCCqhYCwlpTndIOOcYV50RcksRbmCx8M3u5h6bNr5e2dJY9ppM+5pPwIHOUG6N9iO7wUN8iIIhaTzHY+oo6YNGn98imMav9GO6EDKbqw72it/UAuNAkTamanaURTq+0FEEz+cuYOydNvb6LuTdsbcMbNNKIDM0sIU7S00pRkw8qFfpkTHwGtI63iFRikDkYxM4lurH72fwKcIsEN+dJOkJqlNcHcYUrTXW4TAXEIYmXYO/yuNj/sySN8q9aRMrSIKPV6PG5jx8pzN+sxQZFRaZnn1++6LmD
+
+
 
 Adversial Review both extensions research
 =========================================

@@ -1,0 +1,16 @@
+{
+  "name": "extending-your-agent",
+  "owner": { "name": "itenium" },
+  "metadata": {
+    "description": "The marketplace with all Extending Your Agent plugins!",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "extending-your-agent-tutorial",
+      "source": "../plugin-tutorial",
+      "description": "The tutorial plugin to demonstrate the capabilities",
+      "version": "1.0.0"
+    }
+  ]
+}

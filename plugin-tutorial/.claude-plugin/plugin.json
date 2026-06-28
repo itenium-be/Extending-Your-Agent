@@ -1,0 +1,12 @@
+{
+  "name": "extending-your-agent-tutorial",
+  "description": "The tutorial plugin to demonstrate the capabilities",
+  "version": "1.0.0",
+  "author": { "name": "itenium" },
+  "repository": "https://github.com/itenium-be/Extending-Your-Agent",
+  "license": "MIT",
+  "keywords": [
+    "claude",
+    "tutorial"
+  ]
+}
