@@ -24,13 +24,11 @@ items:
   - The AI Track
   - Configure
   - Marketplaces
-  - Plugins
-  - Compose
-  - The description is the interface
-  - Authoring the primitives
-  - Compose & package
-  - Ship with confidence
-  - Operate at scale
+  - Plugin Primitives
+  - Skills & Monitors
+  - Agents & Settings
+  - Hooks
+  - MCP & LSP
 ---
 
 ---
@@ -209,6 +207,8 @@ worktrees:
 - baseRef: start from HEAD or origin/main
 
 keybindings with `"EDITOR": "vim"` on WSL or you'll need to do some path translation magic
+
+preferredNotifChannel: Poor support on Windows, use a custom hook
 -->
 
 
@@ -460,7 +460,7 @@ h2:
 <div v-click class="full-width text-2xl italic text-orange-400 mt-8">
 
 A plugin is installed with your permissions.<br>
-~36% of skills in the wild have flaws.
+ToxicSkills: ~36% of skills in the wild include malware, prompt injection, exposed secrets.
 
 </div>
 
@@ -471,6 +471,8 @@ A plugin is installed with your permissions.<br>
 <!--
 Hooks can run any code (ex: on SessionStart)  
 Before installing one, have a quick glance at the hooks (and maybe the skills).
+
+Snyk findings: https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/
 -->
 
 ---
@@ -529,21 +531,16 @@ layout: code
 /plugin marketplace add https://github.com/itenium-be/Extending-Your-Agent
 /plugin install extending-your-agent-tutorial@extending-your-agent
 /reload-plugins
-
-# With our first, amazing, skill, the Greeter!
-/greeter what we've been postponing
 ```
 
-<div v-click class="full-width mt-8">
+<div v-click class="mt-12">
 
-Greeter Demo
+<PluginPayload />
 
 </div>
 
 
 <!--
-Demo "/greeter what we've been postponing"
-
 # The ASCII dependency
 claude plugin marketplace add rawveg/skillsforge-marketplace
 claude plugin install figlet-text-converter@skillsforge-marketplace
@@ -552,48 +549,94 @@ claude plugin install figlet-text-converter@skillsforge-marketplace
 
 ---
 layout: section
+background: skills.jpg
 ---
 
 # Skills
 
 ::subtitle::
 
-The most important primitive
+Anything that can be a Skill should be one.
 
 
 ---
-layout: default
+layout: statement
+---
+
+# I expect we’ll see a Cambrian explosion in Skills which will make this year’s MCP rush look pedestrian by comparison.
+## Simon Willison
+
+<!-- https://simonwillison.net/2025/Oct/16/claude-skills/ -->
+
+---
+layout: default-aside
 ---
 
 # Skills
+## Our first, amazing, skill, the Greeter!
+
+```bash
+# /extending-your-agent-tutorial:hello
+/greeter what we've been postponing
+```
+
+<div v-click class="mt-20">
+
+<GreeterDemo />
+
+</div>
+
+::image::
+
+![](./images/greeter.jpg)
+
+<!--
+monitors.json: optional field: "when": "on-skill-invoke:greeter"
+-->
+
+
+
+---
+layout: default-aside
+textSize: sm
+---
+
+# Skills
+## Want to create a skill?
 
 <v-clicks depth="2">
 
-- Let's look at the "Greeter" code!
-- Want to create a skill?
-  - Do the action manually, then have Claude write it up as a skill
-  - Refine the skill each time you use it and it doesn't work perfectly (Compound!)
+- Do it manually, then have Claude write it up
+  - Refine it after each use <small>(till perfection)</small>
   - Use `skill-creator@claude-plugins-official`
   - Or `/superpowers:writing-skills`
-  - Or BMADs, ...
 - Keep it under 500 lines
-  - Conciseness check
-  - Progressive Disclosure
+  - Conciseness check & Progressive Disclosure
 - Workflows with clear steps `- [ ] Step 1 (run init.py)`
-- No one was interested in the evals but well...
 
 </v-clicks>
 
+
+<EvalsVsGitRecipes />
+
+::image::
+
+![](./images/skill-creating.jpg)
+
+<!--
+disableBundledSkills, skillListingMaxDescChars, skillOverrides
+-->
 
 
 ---
 layout: code-comparison
 before-label: Won't route
 after-label: Routes
-code-size: 0.72em
+code-size: 0.92em
 ---
 
 # A description is a trigger, not a label
+## The description IS the interface
 
 ::before::
 
@@ -623,67 +666,11 @@ Left: the model has no "when". Right: explicit trigger + scope + boundary.
 
 
 ---
-layout: default
----
-
-# Progressive disclosure is the architecture
-
-<v-clicks depth="2">
-
-- Not an optimization — it's *how the primitive is shaped*
-- **Skill**: ~100 tokens at startup (name + description). Body loads only when relevant
-- **MCP Tool Search**: tool names upfront, full schemas deferred — up to **95%** startup savings
-- **Subagent**: the spawn prompt never enters context unless the parent dispatches
-- Corollary: `CLAUDE.md` loads **unconditionally** → keep it < 200 lines
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Anything that can be a Skill should be one.
-</div>
-
-<!--
-Callback to AI-Driven-Development "Progressive Context Disclosure" slide — there it was a
-context idea; here it's a design rule you author against. Verify the 95% / Tool Search dates.
--->
-
-
----
 layout: section
 ---
 
-# Authoring the primitives
+# Agents
 
-::subtitle::
-
-Skills · Subagents · Hooks · MCP — each through the same lens
-
-
----
-layout: default
----
-
-# Skills — author for discovery
-
-<v-clicks depth="2">
-
-- A folder; only `SKILL.md` is mandatory (Markdown + optional bundled scripts)
-- **Descriptive name** — found from the index
-- **Scoped trigger** — a clear "when does this apply?"
-- **Layered detail** — overview first, references loaded on demand
-- Now a **cross-vendor standard**: Cursor, Copilot, Codex, Gemini read the same `SKILL.md`
-
-</v-clicks>
-
-<div v-click class="full-width text-xl italic text-orange-400 mt-6">
-⚠️ Footgun — the dynamic <code>!`cmd`</code> runs <b>before</b> the model sees the skill.
-Model-level defences never fire. 91% of malicious skills abuse this (ToxicSkills).
-</div>
-
-<!--
-Callback: AI-Driven-Development "Skills-in-git" slide. Same file onboards a hire AND the agent.
-Verify the 91% figure (Snyk ToxicSkills).
--->
 
 
 ---
@@ -1035,6 +1022,7 @@ layout: default
 - Turn knobs and see what happens in `settings.json`
   - `/statusline`, `/update-config`
 - Install `obra/superpowers` or `affaan-m/ECC`
+- Learn with `/powerup`, `/help` or `outputStyle: Learning`
 
 
 </v-clicks>

@@ -7,11 +7,6 @@
 ├──────────────────┼──────────────────────────────────────────────────────────────────┤
 │ MCP              │ enableAllProjectMcpServers, enabled/disabledMcpjsonServers,      │
 │                  │ allowed/deniedMcpServers, disableClaudeAiConnectors              │
-├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Plugins /        │ enabledPlugins, ,                          │
-│ marketplaces     │ pluginConfigs                        │
-├──────────────────┼──────────────────────────────────────────────────────────────────┤
-│ Skills           │ skillOverrides, disableBundledSkills, skillListingMaxDescChars   │
 └──────────────────┴──────────────────────────────────────────────────────────────────┘
 
 
