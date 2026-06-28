@@ -66,3 +66,5 @@ See [research/Analysts](research/Analysts).
 
 - [agent-skills-for-context-engineering](https://github.com/muratcankoylan/agent-skills-for-context-engineering)
 - [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
+- [agentskills.io](https://agentskills.io/home)
+- [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)

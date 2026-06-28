@@ -1,7 +1,7 @@
 [
   {
     "name": "greeter-log",
-    "command": "f=$(ls -t \"${CLAUDE_PLUGIN_ROOT:-.}/skills/hello/logs\"/*.log 2>/dev/null | head -1); tail -n0 -F \"$f\" | grep --line-buffered -E '^\\[(done|error)\\]' | awk '$0!=p{print;fflush();p=$0}'",
+    "command": "D=\"${CLAUDE_PLUGIN_ROOT:-.}/skills/hello/logs\"; declare -A seen; while true; do for f in \"$D\"/*.log; do [ -e \"$f\" ] || continue; while IFS= read -r l; do case \"$l\" in '[done]'*|'[error]'*) k=\"$f|$l\"; [ -n \"${seen[$k]}\" ] || { seen[$k]=1; printf '%s\\n' \"$l\"; };; esac; done < \"$f\"; done; sleep 1; done",
     "description": "greeter skill log — fires when a greeting completes ([done]) or errors ([error])"
   }
 ]

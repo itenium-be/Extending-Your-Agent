@@ -534,6 +534,13 @@ layout: code
 /greeter what we've been postponing
 ```
 
+<div v-click class="full-width mt-8">
+
+Greeter Demo
+
+</div>
+
+
 <!--
 Demo "/greeter what we've been postponing"
 
@@ -565,10 +572,15 @@ layout: default
 - Let's look at the "Greeter" code!
 - Want to create a skill?
   - Do the action manually, then have Claude write it up as a skill
-  - Refine the skill each time you use it and it doesn't work perfectly
+  - Refine the skill each time you use it and it doesn't work perfectly (Compound!)
   - Use `skill-creator@claude-plugins-official`
   - Or `/superpowers:writing-skills`
   - Or BMADs, ...
+- Keep it under 500 lines
+  - Conciseness check
+  - Progressive Disclosure
+- Workflows with clear steps `- [ ] Step 1 (run init.py)`
+- No one was interested in the evals but well...
 
 </v-clicks>
 

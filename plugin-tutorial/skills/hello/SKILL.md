@@ -34,7 +34,7 @@ argument-hint: "[help-working-on]"
 # plugin.json: dependencies
 ---
 
-Log your reasoning to logs/${CLAUDE_SESSION_ID}.log and log the full path.
+Log your reasoning to ${CLAUDE_SKILL_DIR}/logs/${CLAUDE_SESSION_ID}.log and log the full path.
 
 The **last** line you append MUST be a status marker the `greeter-log` monitor watches for:
 - `[done] <one-line summary>` on success
