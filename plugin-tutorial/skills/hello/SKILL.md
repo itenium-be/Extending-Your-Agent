@@ -36,6 +36,10 @@ argument-hint: "[help-working-on]"
 
 Log your reasoning to logs/${CLAUDE_SESSION_ID}.log and log the full path.
 
+The **last** line you append MUST be a status marker the `greeter-log` monitor watches for:
+- `[done] <one-line summary>` on success
+- `[error] <what failed>` if the greeting could not be produced
+
 ## Current user
 
 The current user is
@@ -57,5 +61,5 @@ Greet the "Current user" warmly and ask how you can help them with "$ARGUMENTS" 
 Shortly state their current environment.
 
 Render the banner with the **figlet-text-converter** skill (a plugin dependency — see
-`plugin.json` `dependencies`): use it to turn the user's name into big FIGlet ASCII letters.
+`.claude-plugin/plugin.json` `dependencies`): use it to turn the user's name into big FIGlet ASCII letters.
 Then make it awesome — wrap the banner in a rainbow and add a unicorn (and friends 🦄🌈✨).
