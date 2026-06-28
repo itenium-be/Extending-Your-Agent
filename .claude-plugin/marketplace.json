@@ -8,7 +8,7 @@
   "plugins": [
     {
       "name": "extending-your-agent-tutorial",
-      "source": "../plugin-tutorial",
+      "source": "./plugin-tutorial",
       "description": "The tutorial plugin to demonstrate the capabilities",
       "version": "1.0.0"
     }
