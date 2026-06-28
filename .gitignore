@@ -4,3 +4,5 @@ presentation/dist/
 presentation/.slidev/
 presentation/migration/
 .playwright-mcp/
+
+plugin-tutorial/skills/hello/logs/

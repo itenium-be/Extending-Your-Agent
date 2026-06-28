@@ -7,9 +7,9 @@ description: Greet the user with a friendly message
 disable-model-invocation: true
 # user-invocable: false -> for a skill that doesn't make sense to be invoked manually
 
-# Don't take current context into account for the greeting
+# Don't take current context into account (only CLAUDE.md)
 context: fork
-# agent: which agent to use for the fork?
+# agent: which agent to use for the fork? (built-in: Explore, Plan -- these two skip injecting CLAUDE.md)
 
 # Placeholder for $ARGUMENTS
 argument-hint: "[help-working-on]"

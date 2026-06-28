@@ -523,46 +523,45 @@ layout: code
 ---
 
 # Plugin Install
+## The Extending-Your-Agent-Tutorial
 
-```txt
+```bash
 /plugin marketplace add https://github.com/itenium-be/Extending-Your-Agent
 /plugin install extending-your-agent-tutorial@extending-your-agent
 /reload-plugins
-/greeter important stuff
+
+# With our first, amazing, skill, the Greeter!
+/greeter what we've been postponing
 ```
+
+<!--
+Demo "/greeter what we've been postponing"
+-->
 
 
 ---
 layout: section
 ---
 
-# The description is the interface
+# Skills
 
 ::subtitle::
 
-The one field that routes every primitive
+The most important primitive
 
 
 ---
 layout: default
 ---
 
-# `description` is the universal contract
+# Skills
 
 <v-clicks depth="2">
 
-- The **same field** drives routing in three places:
-  - **Skill** — the activation signal (does it load?)
-  - **MCP tool** — the selection signal (does the model pick it?)
-  - **Subagent** — the dispatch signal (does the parent spawn it?)
-- Get it wrong and it's not a docs bug — it's a **routing failure**
-- And the failure is silent: the primitive just never fires
+- Let's look at the "Greeter"
 
 </v-clicks>
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Write the description before you write the body.
-</div>
 
 
 ---
