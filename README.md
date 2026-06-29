@@ -70,3 +70,4 @@ See [research/Analysts](research/Analysts).
 - [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
 - [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates)
 - [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills)
+- [mattpocock/skills](https://github.com/mattpocock/skills): the `grill-me` skill
