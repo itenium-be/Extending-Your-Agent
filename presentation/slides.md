@@ -667,11 +667,14 @@ Left: the model has no "when". Right: explicit trigger + scope + boundary.
 
 ---
 layout: section
+background: agents.jpg
 ---
 
 # Agents
 
+::subtitle::
 
+Separate instructions & context, summary back
 
 ---
 layout: default
