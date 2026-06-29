@@ -5,5 +5,12 @@
     "extensionToLanguage": {
       ".go": "go"
     }
+  },
+  "json": {
+    "command": "bunx",
+    "args": ["vscode-json-languageserver", "--stdio"],
+    "extensionToLanguage": {
+      ".json": "json"
+    }
   }
 }

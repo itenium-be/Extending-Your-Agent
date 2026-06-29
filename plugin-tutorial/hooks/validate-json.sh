@@ -10,9 +10,14 @@ set -uo pipefail
 input=$(cat)
 file=$(printf '%s' "$input" | jq -r '.tool_input.file_path // empty')
 
-# Only touch JSON files that actually exist on disk.
+# Only touch non-empty JSON files that actually exist on disk.
 case "$file" in *.json) ;; *) exit 0 ;; esac
-[ -f "$file" ] || exit 0
+[ -s "$file" ] || exit 0
+
+# Skip JSONC — config files with // or /* comment lines (tsconfig, vscode settings, …).
+# jq can't parse them and reformatting would silently strip the comments. Match comment
+# LINES only, so an "https://…" inside a string value doesn't trip this.
+grep -qE '^[[:space:]]*(//|/\*)' "$file" && exit 0
 
 # Validate.
 if ! err=$(jq empty "$file" 2>&1); then

@@ -29,5 +29,17 @@ event "$f" | bash "$SCRIPT"; rc=$?
 check "non-json exits 0" "$rc" "0"
 check "non-json untouched" "$(cat "$f")" "hi"
 
+# 4. empty JSON file → ignored, left empty (no fabricated newline)
+f="$tmp/empty.json"; : > "$f"
+event "$f" | bash "$SCRIPT"; rc=$?
+check "empty json exits 0" "$rc" "0"
+check "empty json stays empty" "$(wc -c < "$f" | tr -d ' ')" "0"
+
+# 5. JSONC (comment lines) → skipped untouched, comments preserved
+f="$tmp/conf.json"; printf '{\n  // keep me\n  "a": 1\n}\n' > "$f"; before=$(cat "$f")
+event "$f" | bash "$SCRIPT"; rc=$?
+check "jsonc exits 0" "$rc" "0"
+check "jsonc untouched" "$(cat "$f")" "$before"
+
 echo "passed=$pass failed=$fail"
 [ "$fail" -eq 0 ]
