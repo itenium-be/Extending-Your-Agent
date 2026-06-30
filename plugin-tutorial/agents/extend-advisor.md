@@ -7,6 +7,7 @@ description: >-
 
 # No tools defined? Inherits everything from the main session
 tools: Read, Grep, Glob, WebFetch
+# disallowedTools: Write, Edit
 color: cyan
 
 # model: inherit | sonnet | opus | haiku | fable

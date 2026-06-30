@@ -28,7 +28,7 @@ items:
   - Skills & Monitors
   - Agents & Settings
   - Hooks
-  - MCP & LSP
+  - <s>MCP & LSP</s>
 ---
 
 ---
@@ -686,32 +686,37 @@ Separate instructions & context, summary back
 
 
 ---
-layout: default
+layout: default-aside
 ---
 
 # Default agents
 
-<v-clicks depth="2">
+<VClickTable
+  :headers="['Agent', 'Writes?', 'Prompt', 'Used for']"
+  :rows="[
+    ['<b>claude</b>', '✅', '<code>system</code>', 'Default — when no agent is named'],
+    ['<b>general-purpose</b>', '✅', '<code>system</code>', 'Open-ended multi-step research + execution'],
+    ['<b>Explore</b>', '❌', '<code>custom</code>', 'Haiku: Fan-out search, returns conclusions'],
+    ['<b>Plan</b>', '❌', '<code>custom</code>', 'Design implementation plans, architecture'],
+  ]"
+  :firstVisible="1"
+  size="sm"
+/>
 
-- `claude`: default when no agent is named
-- `general-purpose`: open-ended multi-step research + execution
-- `Explore`: read-only agent for fan-out search, returns conclusions (Haiku)
-- `Plan`: read-only agent to design implementation plans, architecture
-
-</v-clicks>
-
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-8">
-Superpowers supersedes these built-in agents and provides its own prompts
-</div>
 
 <!--
-Other defaults: statusline-setup and claude-code-guide
+Other defaults:
+- statusline-setup (Sonnet): after `/statusline`
+- claude-code-guide (Haiku): when asking about Claude Code features
 -->
+
+::image::
+
+![](./images/default-agents.jpg)
 
 
 ---
-layout: default
+layout: default-aside
 ---
 
 # Subagents
@@ -719,6 +724,7 @@ layout: default
 
 <v-clicks depth="2">
 
+- Separate context window, parallel fan-out
 - The **description = the dispatch decision**
 - An agent starts the context with its own prompt, not the default system prompt
 - Use for: noisy reads, multi-perspective review, independent work
@@ -727,7 +733,7 @@ layout: default
 </v-clicks>
 
 
-<div v-click class="full-width text-2xl italic text-orange-400 mt-8">
+<div v-click class="full-width text-2xl italic text-orange-400 mt-16">
 Let's look at our amazing tutorial agents
 </div>
 
@@ -736,30 +742,79 @@ Let's look at agents/house-style.md -> Takes over the default system prompt
 And extend-advisor -> tells us whether something should be a skill, hook etc
 -->
 
+::image::
+
+![](./images/subagents.jpg)
+
+
+---
+layout: section
+background: hooks.jpg
+---
+
+# Hooks
+
+::subtitle::
+
+Finally, determinism
+
 
 ---
 layout: default
 ---
 
-# Hooks — author for determinism
+# Hooks
+## Fired on lifecycle events, invoked by the harness
 
 <v-clicks depth="2">
 
-- Shell commands fired on lifecycle events — the model **can't talk its way out**
-- Event model: `PreToolUse` (the only one that can **block**), `PostToolUse`, `Stop`, `SessionStart`, …
-- Exit code is the contract: non-zero on `PreToolUse` = denied
-- Use for guardrails: format-on-write, block writes to `main`, run the linter
+- 20+ events:
+  - Once per session: `SessionStart`, `SessionEnd`
+  - Once per turn: `UserPromptSubmit`, `Stop`, `StopFailure`
+  - On every tool call: `PreToolUse`, `PermissionRequest`, `PostToolUse`, `PostToolUseFailure`
+  - `SubagentStart`, `TaskCompleted`, `ConfigChange`, `PreCompact`, `Notification`
+- Use for guardrails & backpressure: format-on-write, run the linter, ...
+- `/hooks`: see active hooks
 
 </v-clicks>
 
-<div v-click class="full-width text-xl italic text-orange-400 mt-6">
-⚠️ Footgun — hook config <b>executes on load</b> (CVE-2025-59536).
-A repo's <code>.claude/settings.json</code> is code, not config.
-</div>
 
 <!--
-Callback: AI-Driven-Development "Hooks > Instructions". There: why hooks beat prompting.
-Here: the event model + the load-time execution risk.
+Check our JSON validator hook!
+
+
+PreToolUse: block the tool with exit code 2 (1 is a non-blocking error)
+-> return {hookSpecificOutput: x} with reason etc via stdout
+-> continue, stopReason, suppressOutput, systemMessage, terminalSequence (https://code.claude.com/docs/en/hooks#emit-terminal-notifications)
+-> additionalContext
+
+Inside a script: `COMMAND=$(jq -r '.tool_input.command')`
+-> session_id, prompt_id, cwd, effort, transcript_path, permission_mode, hook_event_name
+-> for subagent: agent_id, agent_type
+
+
+Matcher is a regex
+
+Hook types: command, http, mcp_tool, prompt, agent
+Other props:
+- command: use ${CLAUDE_PROJECT_DIR}, CLAUDE_PLUGIN_ROOT, CLAUDE_PLUGIN_DATA (persistent data dir)
+- shell: bash | powershell
+- timeout: nr
+- async: true (only for type=command) (also: asyncRewake)
+- if: "Bash(rm *)"
+- args: [] passed to the command
+- once: run once per session
+- statusMessage: custom spinner message
+
+Types:
+- http: JSON POST with url, headers {Authorization: 'Bearer $MY_TOKEN'}, allowedEnvVars ["MY_TOKEN"]
+- mcp_tool: server, tool, input {x: "y"}
+- prompt: prompt, model (default: haiku); respond with {ok: bool, reason: string}
+- agent: experimental, maxTurns: 50, same response as prompt, tools: Read,Grep,Glob
+
+A skill can define hooks in frontmatter
+
+Also see hooks-lifecycle.svg
 -->
 
 
@@ -786,14 +841,6 @@ h2:
 
 </v-clicks>
 
-<div v-click class="full-width text-xl italic text-orange-400 mt-5">
-⚠️ Footgun — mcp-remote RCE (CVE-2025-6514); a 2026 scan found ~200k exposed instances.
-</div>
-
-<!--
-FLEX BUFFER — if running long, compress to this one slide. Depth is reserved for Oct 1.
-Verify: elicitation support status (today is post-research), the ~200k figure.
--->
 
 
 ---
