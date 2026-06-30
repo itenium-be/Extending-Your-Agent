@@ -27,7 +27,7 @@ Community-run plugin directories.
 - [Claude Plugin Hub](https://www.claudepluginhub.com/) - Biggest scraper, semantic search
 - [Build With Claude](https://buildwithclaude.com/) - `davepoon/buildwithclaude` stories/quality over volume
 - [Claude Plugins](https://claude-plugins.dev/) - Own CLI, small & clean
-- [Skills Directory](https://www.skillsdirectory.com/) - Security focused (~36% have flaws)
+- [Skills Directory](https://www.skillsdirectory.com/) - Security focused (Snyk research: ~36% have flaws)
 - [MCP Market](https://mcpmarket.com/) - Cross-tool catalog
 - [Cross AI Tools](https://crossaitools.com/) - Rival to ClaudePluginHub, ex claudemarketplaces.com
 
@@ -64,10 +64,47 @@ See [research/Analysts](research/Analysts).
 
 ### Skills
 
-- [agent-skills-for-context-engineering](https://github.com/muratcankoylan/agent-skills-for-context-engineering)
-- [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills)
+- [agent-skills-for-context-engineering](https://github.com/muratcankoylan/agent-skills-for-context-engineering) ⭐ 17k
+- [awesome-agent-skills](https://github.com/VoltAgent/awesome-agent-skills) ⭐ 27k
 - [agentskills.io](https://agentskills.io/home)
 - [Best Practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)
-- [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates)
-- [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills)
-- [mattpocock/skills](https://github.com/mattpocock/skills): the `grill-me` skill
+- [davila7/claude-code-templates](https://github.com/davila7/claude-code-templates) ⭐ 28k
+- [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills) ⭐ 19k
+- [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) ⭐ 68k
+- [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) ⭐ 42k
+- [anthropics/skills](https://github.com/anthropics/skills) ⭐ 157k
+- [bmad-code-org/bmad-method](https://github.com/bmad-code-org/bmad-method) ⭐ 50k
+
+
+#### Hall of fame
+
+- [mattpocock/skills](https://github.com/mattpocock/skills): `grill-me` ⭐ 152k
+- [affaan-m/ECC](https://github.com/affaan-m/ECC) ⭐ 224k
+- [juliusbrussee/caveman](https://github.com/juliusbrussee/caveman) ⭐ 78k
+- [obra/superpowers](https://github.com/obra/superpowers) ⭐ 242k
+- [f/prompts.chat](https://github.com/f/prompts.chat) ⭐ 165k
+
+
+### Hooks
+
+- [claude-plugins-official//hookify](https://github.com/anthropics/claude-plugins-official/tree/main/plugins/hookify)
+
+
+### Others
+
+Some stuff I should give a spin sometime...
+
+- [gastownhall/beads](https://github.com/gastownhall/beads) ⭐ 25k
+- [imbad0202/academic-research-skills](https://github.com/imbad0202/academic-research-skills) ⭐ 35k
+- [abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) ⭐ 43k
+- [headroomlabs-ai/headroom](https://github.com/headroomlabs-ai/headroom) ⭐ 54k
+- [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) ⭐ 48k
+- [dietrichgebert/ponytail](https://github.com/dietrichgebert/ponytail) ⭐ 69k
+- [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem) ⭐85k
+- [mempalace/mempalace](https://github.com/mempalace/mempalace) ⭐ 56k
+- [ruvnet/RuView](https://github.com/ruvnet/RuView) ⭐ 76k
+- [leonxlnx/taste-skill](https://github.com/leonxlnx/taste-skill) ⭐ 53k
+- [jarrodwatts/claude-hud](https://github.com/jarrodwatts/claude-hud) ⭐ 26k
+- [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) ⭐ 185k
+- [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) ⭐ 98k
+- [pbakaus/impeccable](https://github.com/pbakaus/impeccable) ⭐ 42k

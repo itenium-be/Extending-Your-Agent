@@ -77,6 +77,14 @@ layout: default-aside
 
 ![](./images/not-just-developers.jpg)
 
+
+<!--
+Examples?
+- [10x-Team](https://github.com/Jaan-Mustafa/10x-Team): 12 specialized roles (CTO, Product Manager, Security Engineer, ...)
+- [16minds](https://github.com/yukurash/16minds-plugin)
+-->
+
+
 ---
 layout: statement
 ---
@@ -676,30 +684,56 @@ background: agents.jpg
 
 Separate instructions & context, summary back
 
+
 ---
 layout: default
 ---
 
-# Subagents — author for isolation
+# Default agents
 
 <v-clicks depth="2">
 
-- A separate session, its own context — returns a **summary**, not raw output
-- Author it like a skill: name + **description = the dispatch decision**
-- Two payoffs: **context isolation** and **parallel fan-out**
-- Reach for it when: noisy reads, multi-perspective review, independent work
-- Skill vs subagent: same instruction, but need a *clean* window? → subagent
+- `claude`: default when no agent is named
+- `general-purpose`: open-ended multi-step research + execution
+- `Explore`: read-only agent for fan-out search, returns conclusions (Haiku)
+- `Plan`: read-only agent to design implementation plans, architecture
 
 </v-clicks>
 
-<div v-click class="full-width text-xl italic text-orange-400 mt-6">
-⚠️ Footgun — a subagent <b>inherits tools & permissions</b>.
-An auto-dispatched agent's blast radius is whatever you granted the parent.
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-8">
+Superpowers supersedes these built-in agents and provides its own prompts
 </div>
 
 <!--
-Callback: AI-Driven-Development "Sub-agents" + "Multi-Agent Review". There: what they are.
-Here: how to author one well, and the permission-inheritance trap.
+Other defaults: statusline-setup and claude-code-guide
+-->
+
+
+---
+layout: default
+---
+
+# Subagents
+## Fresh context — returns a **summary**
+
+<v-clicks depth="2">
+
+- The **description = the dispatch decision**
+- An agent starts the context with its own prompt, not the default system prompt
+- Use for: noisy reads, multi-perspective review, independent work
+- `/agents`: see active and available agents
+
+</v-clicks>
+
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-8">
+Let's look at our amazing tutorial agents
+</div>
+
+<!--
+Let's look at agents/house-style.md -> Takes over the default system prompt  
+And extend-advisor -> tells us whether something should be a skill, hook etc
 -->
 
 

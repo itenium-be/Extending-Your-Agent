@@ -11,20 +11,9 @@
 
 
 
-/agents
 
 
 
-
-
-
-
-https://github.com/affaan-m/ECC
-
-
-- [10x-Team](https://github.com/Jaan-Mustafa/10x-Team): 12 specialized roles (CTO, Product Manager, Security Engineer, ...)
-- [16minds](https://github.com/yukurash/16minds-plugin)
-- [ADR Creator](https://github.com/barnburner121/claude-plugin-marketplace)
 
 
 

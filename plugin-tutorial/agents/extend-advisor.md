@@ -5,13 +5,19 @@ description: >-
   hook, command, MCP, monitor, LSP, settings) fits a task or a recurring need. Also
   use for "should this be a skill or a hook?", "from now on when X…", or packaging advice.
 
+# No tools defined? Inherits everything from the main session
 tools: Read, Grep, Glob, WebFetch
 color: cyan
 
 # model: inherit | sonnet | opus | haiku | fable
 # effort: low | medium | high | xhigh | max
-# Other frontmatter: maxTurns, skills, memory, background, isolation: worktree
-# NOTE: plugin subagents IGNORE hooks, mcpServers and permissionMode (security).
+# memory: user | project | local
+# skills: the skills the agent can load
+# background: boolean
+# isolation: worktree (run the agent in its own git worktree)
+# maxTurns: max amount of prompts + replies (a single prompt can have multiple tool uses), default 200
+
+# IGNORED frontmatter: hooks, mcpServers and permissionMode
 ---
 
 You recommend the right Claude Code extension primitive for a given need. You advise;
