@@ -818,28 +818,12 @@ Also see hooks-lifecycle.svg
 -->
 
 
+
 ---
-layout: default
-textSize: sm
-h2:
-  type: brackets
-  color: muted
-  position: all
+layout: section
 ---
 
-# MCP — the map
-
-## we build one for real on Oct 1
-
-<v-clicks depth="2">
-
-- **6 primitives**: tools, resources, prompts (server) · **sampling, elicitation, roots** (client)
-- Two transports: **stdio** (local) · **HTTP** (remote)
-- The client-side three are what every "hello tool" tutorial skips
-  - Live contradiction: *elicitation* shipped June-2025 spec — Claude Code still doesn't support it (VS Code does)
-- When **MCP** vs **CLI** vs **Skill**? Stateful connection → MCP. "Run this, read output" → CLI/Skill
-
-</v-clicks>
+# Wrapping up
 
 
 
@@ -848,9 +832,8 @@ layout: code
 code-textSize: 1.1em
 ---
 
-# This is the whole server
-
-## (and that's October's talk)
+# MCP
+## October's Session
 
 ```python
 from fastmcp import FastMCP
@@ -865,90 +848,13 @@ def lookup(ticket_id: str) -> dict:
 mcp.run()  # stdio by default
 ```
 
-<!--
-The ~10-line teaser. Do NOT walk through scaffolding/auth/inspector here — that's Oct 1.
-Just: "a tool is a typed function with a docstring-as-description". Then move on.
--->
-
-
----
-layout: section
----
-
-# Compose & package
-
-::subtitle::
-
-From a folder of skills to your team's playbook
-
 
 ---
 layout: default
 ---
 
-# Plugins — one installable unit
-
-<v-clicks depth="2">
-
-- `mkdir → plugin.json → SKILL.md → /plugin` — ship in one breath
-- Bundles skills + subagents + hooks + pre-configured MCP servers together
-- **Skills-in-git → plugin**: your team's runbook becomes installable
-- Marketplaces: official + community — `/plugin marketplace add`, then `/plugin install`
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-The unit of distribution is the unit of trust.
-</div>
-
-<!--
-The part the prior talk never touched. Packaging is what makes authoring pay off across a team.
--->
-
-
----
-layout: default
-textSize: sm
-h1:
-  type: hash
-  color: muted
-  position: start
----
-
-# Footgun · the marketplace is the supply chain
-
-<v-clicks>
-
-- **ToxicSkills** audit: 36.8% of skills had ≥1 flaw, 13.4% critical
-- Dependency-hijack PoCs against marketplace installs
-- **Rug-pull**: a trusted tool updated *after* you approved it — manifests aren't version-locked
-- Defences: allowlists + **version locks**, manifest **pinning/signing**, read before you install
-
-</v-clicks>
-
-<div v-click class="full-width text-xl italic text-orange-400 mt-6">
-You'd never <code>npm install</code> blind. Don't <code>/plugin install</code> blind.
-</div>
-
-<!-- Verify the ToxicSkills percentages (Snyk). -->
-
-
----
-layout: section
----
-
-# Ship with confidence
-
-::subtitle::
-
-How do you know the thing you authored works?
-
-
----
-layout: default
----
-
-# Test your extensions
+# Testing your extensions
+## The missing session
 
 <v-clicks depth="2">
 
@@ -964,132 +870,6 @@ layout: default
 <div v-click class="full-width text-2xl italic text-orange-400 mt-6">
 Rubrics, judges, golden datasets, CI gates — that's a whole session of its own.
 </div>
-
-<!--
-⚠️ DRAFT — backing research in flight (extension-specific testing). General eval methodology
-is deliberately OUT (its own session). Keep this narrow: testing what YOU authored.
-Refine once the research lands.
--->
-
-
----
-layout: section
----
-
-# Operate at scale
-
-::subtitle::
-
-Beyond the CLI, and what it costs
-
-
----
-layout: default
----
-
-# Agent SDK & headless
-
-<v-clicks depth="2">
-
-- Same agent, **no interactive shell** — embed it in apps, scripts, CI
-- `claude -p --bare` = reproducible runs: skips local config discovery, identical across machines
-- The Agent SDK `query()` API: programmatic agents, your own harness
-- Heads-up: SDK billing **separated** from interactive limits (15 June 2026)
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-The harness boundary isn't the CLI — it's the SDK.
-</div>
-
-<!--
-Verify the June-15 billing split + that --bare behaves as described before presenting.
--->
-
-
----
-layout: default
-textSize: sm
----
-
-# The economics force discipline
-
-<v-clicks depth="2">
-
-- Enterprise average: **~$13 / dev / active day** (~$150–250 / dev / month)
-- **Agent teams** (parallel instances) burn **~7×** the tokens of a standard session
-  - Each runs in its own git **worktree** — `worktree.symlinkDirectories` (share `node_modules`) + `sparsePaths` (skip the monorepo) keep that affordable on disk & setup
-- This is exactly why progressive disclosure + tight descriptions matter
-- A bloated `CLAUDE.md` and 20 always-on MCP tools is a recurring tax on every session
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Authoring discipline is what makes the tooling sustainable at team scale.
-</div>
-
-<!-- Verify the $13/day and 7× figures (Claude Code costs docs). -->
-
-
----
-layout: section
----
-
-# Wrapping up
-
-
----
-layout: default
----
-
-# Every footgun is the same shape
-
-<v-clicks>
-
-- **Lethal trifecta** = private data + untrusted instructions + an exfiltration vector
-- Plugin trust · skill `!cmd` · subagent permissions · hook execution · marketplace rug-pull
-- Each extension layer makes assembling the trifecta *accidentally* easier
-- The registry-as-trust-root is the only real answer — and it isn't solved yet
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-You're not just extending the agent — you're extending its attack surface.
-</div>
-
-<!-- Simon Willison's lethal trifecta. This is the security through-line, woven, now tied off. -->
-
-
----
-layout: default
----
-
-# What's actionable
-
-<v-clicks>
-
-- Write the **description first** — it's the interface, for every primitive
-- Make it a **Skill** unless you need state (→ MCP) or determinism (→ Hook)
-- **Package** your team's playbook as a plugin; read before you install
-- **Test** what you authored; never `/plugin install` blind
-- Keep `CLAUDE.md` lean — progressive disclosure is a budget decision
-
-</v-clicks>
-
-
----
-layout: statement
-textSize: lg
----
-
-# July: theory → **12 Aug: you build** → Oct: an MCP server
-
-::author::
-
-See you at the hackathon
-
-<!-- Pay off the ramp from the teaser. Drive signups. -->
-
 
 
 ---
@@ -1107,7 +887,9 @@ layout: default
   - `/statusline`, `/update-config`
 - Install `obra/superpowers` or `affaan-m/ECC`
 - Learn with `/powerup`, `/help` or `outputStyle: Learning`
-
+- Same instructions or same workflow?
+  - Turn it into a Skill!
+  - Use a skill like `writing-skills` to help you!
 
 </v-clicks>
 
