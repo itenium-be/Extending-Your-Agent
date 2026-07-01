@@ -4,7 +4,7 @@ title: Extending your agent
 subTitle: Configure → Extend → Compose → Ship
 transition: fade
 session-time: 90min
-track: ai
+track: AI
 type: Theoretical
 first: 2026-07-01
 ---
