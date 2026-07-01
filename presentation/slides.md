@@ -903,25 +903,16 @@ layout: full
 
 
 ---
-layout: default
+layout: full
 ---
 
-# Call to action
+<CtaQuests />
 
-<v-clicks>
+---
+layout: full
+---
 
-- `#boekenclub`: join us for "The Alignment Problem"
-- Join Claude hack-a-tons during office days, first one on **12 august**!
-- Turn your `~/.claude` into a git repository
-- Turn knobs and see what happens in `settings.json`
-  - `/statusline`, `/update-config`
-- Install `obra/superpowers` or `affaan-m/ECC`
-- Learn with `/powerup`, `/help` or `outputStyle: Learning`
-- Same instructions or same workflow?
-  - Turn it into a Skill!
-  - Use a skill like `writing-skills` to help you!
-
-</v-clicks>
+<CtaJoin />
 
 
 ---
