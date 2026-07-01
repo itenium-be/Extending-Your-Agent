@@ -818,10 +818,13 @@ h1:
   - Once per turn: `UserPromptSubmit`, `Stop`, `StopFailure`
   - On every tool call: `PreToolUse`, `PermissionRequest`, `PostToolUse`, `PostToolUseFailure`
   - `SubagentStart`, `TaskCompleted`, `ConfigChange`, `PreCompact`, `Notification`
-- Use for guardrails & backpressure: format-on-write, run the linter, ...
 - `/hooks`: see active hooks
 
 </v-clicks>
+
+<div v-click class="full-width text-2xl italic text-orange-400 mt-16">
+Use for guardrails & backpressure: format-on-write, run the linter, ...
+</div>
 
 
 <!--
@@ -862,6 +865,74 @@ A skill can define hooks in frontmatter
 Also see hooks-lifecycle.svg
 -->
 
+
+---
+layout: default
+disabled: true
+---
+
+# Hooks
+## Input on stdin, control via exit code or JSON
+
+<v-clicks depth="2">
+
+- **In** — the harness pipes JSON on stdin
+  - `COMMAND=$(jq -r '.tool_input.command')`
+  - `session_id`, `cwd`, `permission_mode`, `hook_event_name`, `transcript_path`, `effort`
+  - subagents also get `agent_id`, `agent_type`
+- **Block** — exit code `2` blocks the tool <small>(`1` = non-blocking error)</small>
+- **Or** — emit JSON on stdout for richer control
+  - `hookSpecificOutput.additionalContext` — inject context / reason
+  - `continue`, `stopReason` — stop the turn
+  - `suppressOutput`, `systemMessage`, `terminalSequence`
+
+</v-clicks>
+
+
+---
+layout: default
+---
+
+# Hooks
+## Five types
+
+<VClickTable
+  :headers="['Type', 'Runs', 'Key props']"
+  :rows="[
+    ['<b>command</b>', 'A script (bash / powershell)', '<code>args</code>, <code>timeout</code>, <code>async</code>, env vars'],
+    ['<b>http</b>', 'POST JSON to a URL', '<code>url</code>, <code>headers</code>, <code>allowedEnvVars</code>'],
+    ['<b>mcp_tool</b>', 'Call an MCP server tool', '<code>server</code>, <code>tool</code>, <code>input</code>'],
+    ['<b>prompt</b>', 'Ask an LLM <small>(haiku)</small>', 'returns <code>{ ok, reason }</code>'],
+    ['<b>agent</b>', 'Mini-agent <small>(experimental)</small>', '<code>maxTurns</code>, tools: Read/Grep/Glob'],
+  ]"
+  :firstVisible="1"
+  size="sm"
+/>
+
+<div v-click="5" class="full-width text-2xl italic text-orange-400 mt-16">
+Let's have a look at the hooks in our plugin
+</div>
+
+
+
+---
+layout: default
+disabled: true
+---
+
+# Hooks
+## Wiring & knobs
+
+<v-clicks depth="2">
+
+- `matcher` is a **regex** — add `if: "Bash(rm *)"` for finer gating
+- `once` — run once per session
+- `async: true` — don't block <small>(command hooks only; also `asyncRewake`)</small>
+- `timeout`, `statusMessage` <small>(custom spinner text)</small>
+- `command` env: `${CLAUDE_PROJECT_DIR}`, `CLAUDE_PLUGIN_ROOT`, `CLAUDE_PLUGIN_DATA`
+- A **skill** can declare hooks in its frontmatter
+
+</v-clicks>
 
 
 ---
