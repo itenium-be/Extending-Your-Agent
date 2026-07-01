@@ -3,7 +3,7 @@ theme: ./theme
 title: Extending Your Harness
 subTitle: Configure → Extend → Compose → Ship
 transition: fade
-session-time: 90min
+session-time: 100min
 track: AI
 type: Theoretical
 first: 2026-07-01

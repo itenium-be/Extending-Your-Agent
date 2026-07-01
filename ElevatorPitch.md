@@ -17,4 +17,4 @@ Developers who want to go past the defaults: turn the knobs in `settings.json`, 
 
 ## Session Format
 
-90 minutes — virtual, deep-dive.
+100 minutes — virtual, deep-dive.
