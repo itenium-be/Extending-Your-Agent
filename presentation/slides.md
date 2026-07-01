@@ -26,7 +26,7 @@ items:
   - Marketplaces
   - Plugin Primitives
   - Skills & Monitors
-  - Agents & Settings
+  - Agents & Configuration
   - Hooks
   - <s>MCP & LSP</s>
 ---
@@ -240,7 +240,7 @@ h1:
 
 <v-clicks depth="2">
 
-- `/model`: 1 Opus == +/-5 Sonnet tokens
+- `/model`: 1 Opus == ≈5× Sonnet token cost
 - `advisorModel` and `/advisor`: adversarial review by a stronger model
 - `/effort`: low (faster) -> xhigh (smarter)
   - `ultra` burn all the tokens (fan out, pipelines, verify, judge, ...) - Trigger with "ultracode"
@@ -488,7 +488,7 @@ h2:
 <div v-click class="full-width text-2xl italic text-orange-400 mt-8">
 
 A plugin is installed with your permissions.<br>
-ToxicSkills: ~36% of skills in the wild include malware, prompt injection, exposed secrets.
+ToxicSkills: ~36% of skills in the wild include malware, prompt injection, exposed secrets, ...
 
 </div>
 
