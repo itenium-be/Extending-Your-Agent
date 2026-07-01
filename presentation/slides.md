@@ -829,41 +829,9 @@ Use for guardrails & backpressure: format-on-write, run the linter, ...
 
 
 <!--
+See hooks-lifecycle.svg for more in depth
+
 Check our JSON validator hook!
-
-
-PreToolUse: block the tool with exit code 2 (1 is a non-blocking error)
--> return {hookSpecificOutput: x} with reason etc via stdout
--> continue, stopReason, suppressOutput, systemMessage, terminalSequence (https://code.claude.com/docs/en/hooks#emit-terminal-notifications)
--> additionalContext
-
-Inside a script: `COMMAND=$(jq -r '.tool_input.command')`
--> session_id, prompt_id, cwd, effort, transcript_path, permission_mode, hook_event_name
--> for subagent: agent_id, agent_type
-
-
-Matcher is a regex
-
-Hook types: command, http, mcp_tool, prompt, agent
-Other props:
-- command: use ${CLAUDE_PROJECT_DIR}, CLAUDE_PLUGIN_ROOT, CLAUDE_PLUGIN_DATA (persistent data dir)
-- shell: bash | powershell
-- timeout: nr
-- async: true (only for type=command) (also: asyncRewake)
-- if: "Bash(rm *)"
-- args: [] passed to the command
-- once: run once per session
-- statusMessage: custom spinner message
-
-Types:
-- http: JSON POST with url, headers {Authorization: 'Bearer $MY_TOKEN'}, allowedEnvVars ["MY_TOKEN"]
-- mcp_tool: server, tool, input {x: "y"}
-- prompt: prompt, model (default: haiku); respond with {ok: bool, reason: string}
-- agent: experimental, maxTurns: 50, same response as prompt, tools: Read,Grep,Glob
-
-A skill can define hooks in frontmatter
-
-Also see hooks-lifecycle.svg
 -->
 
 
@@ -914,7 +882,38 @@ layout: default
 Let's have a look at the hooks in our plugin
 </div>
 
+<!--
+A skill can define hooks in frontmatter
 
+PreToolUse: block the tool with exit code 2 (1 is a non-blocking error)
+-> return {hookSpecificOutput: x} with reason etc via stdout
+-> continue, stopReason, suppressOutput, systemMessage, terminalSequence (https://code.claude.com/docs/en/hooks#emit-terminal-notifications)
+-> additionalContext
+
+Inside a script: `COMMAND=$(jq -r '.tool_input.command')`
+-> session_id, prompt_id, cwd, effort, transcript_path, permission_mode, hook_event_name
+-> for subagent: agent_id, agent_type
+
+
+Matcher is a regex
+
+Hook types: command, http, mcp_tool, prompt, agent
+Other props:
+- command: use ${CLAUDE_PROJECT_DIR}, CLAUDE_PLUGIN_ROOT, CLAUDE_PLUGIN_DATA (persistent data dir)
+- shell: bash | powershell
+- timeout: nr
+- async: true (only for type=command) (also: asyncRewake)
+- if: "Bash(rm *)"
+- args: [] passed to the command
+- once: run once per session
+- statusMessage: custom spinner message
+
+Types:
+- http: JSON POST with url, headers {Authorization: 'Bearer $MY_TOKEN'}, allowedEnvVars ["MY_TOKEN"]
+- mcp_tool: server, tool, input {x: "y"}
+- prompt: prompt, model (default: haiku); respond with {ok: bool, reason: string}
+- agent: experimental, maxTurns: 50, same response as prompt, tools: Read,Grep,Glob
+-->
 
 ---
 layout: default
