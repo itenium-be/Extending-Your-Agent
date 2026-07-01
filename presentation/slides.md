@@ -891,35 +891,15 @@ def lookup(ticket_id: str) -> dict:
     """Fetch an itenium ticket by id."""
     return client.get(ticket_id)
 
-mcp.run()  # stdio by default
+mcp.run()
 ```
 
 
 ---
-layout: default
-h1:
-  type: semicolon
-  color: muted
-  position: end
+layout: full
 ---
 
-# Testing your extensions
-## The missing session
-
-<v-clicks depth="2">
-
-- The gap nobody fills: you'd never ship a function with no test — why ship a skill with none?
-- **Extension-specific** checks:
-  - Does the **description trigger** when it should — and *not* when it shouldn't?
-  - Does a **subagent** get dispatched on the right prompts?
-  - Did a bundled dependency **rug-pull** since last run? (diff the manifest)
-- Lightweight first: a per-PR smoke check beats a perfect eval platform you never build
-
-</v-clicks>
-
-<div v-click class="full-width text-2xl italic text-orange-400 mt-6">
-Rubrics, judges, golden datasets, CI gates — that's a whole session of its own.
-</div>
+<VibesArsenal />
 
 
 ---
