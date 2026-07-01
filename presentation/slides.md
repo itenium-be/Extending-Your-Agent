@@ -7,6 +7,7 @@ session-time: 90min
 track: AI
 type: Theoretical
 first: 2026-07-01
+aspectRatio: 16/10
 ---
 
 # Extending Your Harness
