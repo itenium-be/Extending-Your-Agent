@@ -1,6 +1,6 @@
 ---
 theme: ./theme
-title: Extending your agent
+title: Extending Your Harness
 subTitle: Configure → Extend → Compose → Ship
 transition: fade
 session-time: 90min
@@ -9,7 +9,7 @@ type: Theoretical
 first: 2026-07-01
 ---
 
-# Extending your agent
+# Extending Your Harness
 ## Configure → Extend → Compose → Ship
 
 ::image::

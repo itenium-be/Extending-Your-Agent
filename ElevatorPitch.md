@@ -2,7 +2,7 @@
 
 ## Abstract
 
-**Configure → Extend → Compose → Ship.** You've met skills, agents, and hooks — now make Claude Code your own. Turn the knobs (settings, context engineering, models, permissions), author each primitive around one principle — the description *is* the interface — then compose them into installable plugins you pull from a marketplace and ship to your team. MCP gets its own session later.
+You've met skills, agents, and hooks — now make Claude Code your own. Turn the knobs (settings, context engineering, models, permissions), author each primitive around one principle — the description is the interface — then compose them into installable plugins you pull from a marketplace and ship to your team. MCP gets its own session later.
 
 ## Target Audience
 
