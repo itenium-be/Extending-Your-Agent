@@ -58,6 +58,10 @@ layout: full
 
 ---
 layout: default-aside
+h1:
+  type: brackets
+  color: muted
+  position: all
 ---
 
 # This is just for developers, right?
@@ -183,6 +187,10 @@ The middle is the dumb zone,
 
 ---
 layout: default-aside
+h1:
+  type: dot
+  color: primary
+  position: end
 ---
 
 # Look & Feel
@@ -301,6 +309,14 @@ On Windows: there is an npm package.
 ---
 layout: default-aside
 textSize: sm
+h1:
+  type: slashes
+  color: primary
+  position: end
+h2:
+  type: semicolon
+  color: muted
+  position: end
 ---
 
 # On the go
@@ -443,6 +459,10 @@ What the marketplaces offer...
 
 ---
 layout: default-aside
+h1:
+  type: braces
+  color: muted
+  position: all
 h2:
   type: brackets
   color: primary
@@ -556,6 +576,15 @@ claude plugin install figlet-text-converter@skillsforge-marketplace
 
 
 ---
+layout: break
+---
+
+::timer::
+
+<Timer :minutes="5" />
+
+
+---
 layout: section
 background: skills.jpg
 ---
@@ -578,6 +607,14 @@ layout: statement
 
 ---
 layout: default-aside
+h1:
+  type: hash
+  color: primary
+  position: start
+h2:
+  type: dot
+  color: muted
+  position: end
 ---
 
 # Skills
@@ -687,6 +724,10 @@ Separate instructions & context, summary back
 
 ---
 layout: default-aside
+h1:
+  type: brackets
+  color: primary
+  position: 2
 ---
 
 # Default agents
@@ -761,6 +802,10 @@ Finally, determinism
 
 ---
 layout: default
+h1:
+  type: braces
+  color: primary
+  position: all
 ---
 
 # Hooks
@@ -821,6 +866,7 @@ Also see hooks-lifecycle.svg
 
 ---
 layout: section
+background: wrapping-up.jpg
 ---
 
 # Wrapping up
@@ -829,7 +875,7 @@ layout: section
 
 ---
 layout: code
-code-textSize: 1.1em
+code-size: 1.2em
 ---
 
 # MCP
@@ -851,6 +897,10 @@ mcp.run()  # stdio by default
 
 ---
 layout: default
+h1:
+  type: semicolon
+  color: muted
+  position: end
 ---
 
 # Testing your extensions

@@ -1,4 +1,7 @@
 ---
+# Invoke the /greeter in Claude if not yet done!
+
+
 # Without a name this is triggered as: /extending-your-agent-tutorial:hello
 name: greeter
 
